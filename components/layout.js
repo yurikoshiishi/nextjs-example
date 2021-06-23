@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useAmp } from 'next/amp';
 import Image from 'next/image';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
@@ -8,6 +9,8 @@ const name = '[Your Name]';
 export const siteTitle = 'Next.js Sample Website';
 
 export default function Layout({ children, home }) {
+  const isAmp = useAmp();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -28,14 +31,24 @@ export default function Layout({ children, home }) {
       <header className={styles.header}>
         {home ? (
           <>
-            <Image
-              priority
-              src="/images/profile.jpg"
-              className={utilStyles.borderCircle}
-              height={144}
-              width={144}
-              alt={name}
-            />
+            {isAmp ? (
+              <amp-img
+                src="/images/profile.jpg"
+                className={utilStyles.borderCircle}
+                height={144}
+                width={144}
+                alt={name}
+              />
+            ) : (
+              <Image
+                priority
+                src="/images/profile.jpg"
+                className={utilStyles.borderCircle}
+                height={144}
+                width={144}
+                alt={name}
+              />
+            )}
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
         ) : (

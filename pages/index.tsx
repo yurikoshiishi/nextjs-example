@@ -5,6 +5,8 @@ import { getSortedPostsData } from '../lib/posts';
 import Link from 'next/link';
 import Date from '../components/date';
 
+export const config = { amp: true };
+
 export default function Home({ allPostsData }) {
   return (
     <Layout home>
