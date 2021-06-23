@@ -1,18 +1,21 @@
 import Head from 'next/head';
 import { useAmp } from 'next/amp';
 import Image from 'next/image';
-import styles from './layout.module.css';
-import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
+import { Container, Header } from './Layout.styles';
 
 const name = '[Your Name]';
 export const siteTitle = 'Next.js Sample Website';
 
-export default function Layout({ children, home }) {
+interface LayoutProps {
+  home?: boolean;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children, home }) => {
   const isAmp = useAmp();
 
   return (
-    <div className={styles.container}>
+    <Container>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -28,13 +31,13 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
+      <Header>
         {home ? (
           <>
             {isAmp ? (
               <amp-img
                 src="/images/profile.jpg"
-                className={utilStyles.borderCircle}
+                className="borderCircle"
                 height={144}
                 width={144}
                 alt={name}
@@ -43,44 +46,46 @@ export default function Layout({ children, home }) {
               <Image
                 priority
                 src="/images/profile.jpg"
-                className={utilStyles.borderCircle}
+                className="borderCircle"
                 height={144}
                 width={144}
                 alt={name}
               />
             )}
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className="heading2Xl">{name}</h1>
           </>
         ) : (
           <>
-            <Link href="/">
+            <Link href={isAmp ? '/?amp=1' : '/'}>
               <a>
                 <Image
                   priority
                   src="/images/profile.jpg"
-                  className={utilStyles.borderCircle}
+                  className="borderCircle"
                   height={108}
                   width={108}
                   alt={name}
                 />
               </a>
             </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
+            <h2 className="headingLg">
+              <Link href={isAmp ? '/?amp=1' : '/'}>
+                <a className="colorInherit">{name}</a>
               </Link>
             </h2>
           </>
         )}
-      </header>
+      </Header>
       <main>{children}</main>
       {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
+        <div className=".backToHome">
+          <Link href={isAmp ? '/?amp=1' : '/'}>
             <a>← Back to home</a>
           </Link>
         </div>
       )}
-    </div>
+    </Container>
   );
-}
+};
+
+export default Layout;
