@@ -58,14 +58,24 @@ const Layout: React.FC<LayoutProps> = ({ children, home }) => {
           <>
             <Link href={isAmp ? '/?amp=1' : '/'}>
               <a>
-                <Image
-                  priority
-                  src="/images/profile.jpg"
-                  className="borderCircle"
-                  height={108}
-                  width={108}
-                  alt={name}
-                />
+                {isAmp ? (
+                  <amp-img
+                    src="/images/profile.jpg"
+                    className="borderCircle"
+                    height={108}
+                    width={108}
+                    alt={name}
+                  />
+                ) : (
+                  <Image
+                    priority
+                    src="/images/profile.jpg"
+                    className="borderCircle"
+                    height={108}
+                    width={108}
+                    alt={name}
+                  />
+                )}
               </a>
             </Link>
             <h2 className="headingLg">

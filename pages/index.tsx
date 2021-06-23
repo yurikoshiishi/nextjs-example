@@ -3,7 +3,7 @@ import { getSortedPostsData } from '../lib/posts';
 import List from '../components/List/List';
 import Layout, { siteTitle } from '../components/Layout/Layout';
 
-export const config = { amp: true };
+export const config = { amp: 'hybrid' };
 
 export default function Home({ allPostsData }) {
   return (

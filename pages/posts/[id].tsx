@@ -3,6 +3,8 @@ import { getAllPostIds, getPostData } from '../../lib/posts';
 import Head from 'next/head';
 import Date from '../../components/date';
 
+export const config = { amp: 'hybrid' };
+
 export default function Post({ postData }) {
   return (
     <Layout>
