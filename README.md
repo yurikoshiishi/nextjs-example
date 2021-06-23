@@ -1,1 +1,6 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+Next.js example app
+
+- AMP
+- StyledComponents
+- Recoil
+- SWR
