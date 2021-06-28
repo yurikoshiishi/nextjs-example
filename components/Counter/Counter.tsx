@@ -9,13 +9,13 @@ import {
 interface CounterProps {}
 
 const Counter: React.FC<CounterProps> = ({}) => {
-  const setCount = useSetRecoilState(countState);
-  const count = useRecoilValue(oppositeCountState);
+  const [count, setCount] = useRecoilState(countState);
+  const oppositeCount = useRecoilValue(oppositeCountState);
   const [isOpposite, setIsOpposite] = useRecoilState(countOppositeState);
 
   return (
     <div>
-      <div>Current Count: {count}</div>
+      <div>Current Count: {oppositeCount}</div>
       <div>
         <button onClick={() => setCount(count + 1)}>increment</button>
         <button onClick={() => setCount(count - 1)}>decrement</button>
